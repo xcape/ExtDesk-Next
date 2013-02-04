@@ -3,7 +3,6 @@ ExtDesk-Next
 
 The Nightly version of Extdesk..
 
-Please works
 
 =============
 
