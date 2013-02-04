@@ -1,7 +1,9 @@
 ExtDesk-Next
 =============
 
-The Nightly version of Extdesk... in dev... other test
+The Nightly version of Extdesk..
+
+Please works
 
 =============
 
