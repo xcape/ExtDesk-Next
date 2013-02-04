@@ -120,6 +120,7 @@
                     defaultType: 'textfield',
                     border: false,
                     layout:'auto',
+                    region: 'center',
                     bodyPadding: 10,
                     defaults:{
                         fieldWidth: 60,
@@ -141,7 +142,16 @@
                         fieldLabel: lan["user"],
                         msgTarget: 'side',
                         allowBlank: false,
-                        name: 'user'
+                        name: 'user',
+                        listeners: {
+            				change: function(a) {
+                				//console.log(a.value);
+                				x=Ext.get('img-avatar')
+                				if (x!=null){
+                					Ext.get('img-avatar').set({src: "resources/images/avatars/"+a.value+".png"});	
+                				}
+                			}	
+            			}                        
                     },
                     {
                         id:"idLoginPswd",
@@ -172,14 +182,23 @@
 							var win = Ext.create('Ext.window.Window', {
 								id : 'idWinLogin',
 								title: lan["login"],
-								width: 350,
-								height: 200,
-								minWidth: 350,
-								minHeight:200,
-								layout: 'fit',
+								width: 450,
+								height: 210,
+								minWidth: 450,
+								minHeight:210,
+								layout: 'border',
 								plain:true,
 								closable:false,
-								items: form,
+								items: [
+									{
+		                                xtype: 'panel',
+		                                region: 'west',
+		                                width: 155,
+		                                bodyPadding: 12,
+		                                html: '<img src="resources/images/avatars/extdesklogo.png" id="img-avatar"/>'
+		                            },
+		                            form
+								],
 			
 								buttons: [{
 									id: 'btnEnter',
@@ -247,6 +266,8 @@
 						// fill with the cookies
 						if (Ext.util.Cookies.get("rem_user")!=null){
 							Ext.getCmp('idLoginUser').setValue(Ext.util.Cookies.get("rem_user"));
+							//remembers image
+							//Ext.get('img-avatar').set({src: "resources/images/avatars/"+Ext.util.Cookies.get('rem_user')+".png"});
 							Ext.getCmp('idRememberUser').setValue(true);
 						}
 						if (Ext.util.Cookies.get("rem_pswd")!=null){
@@ -255,10 +276,10 @@
 						}
 	
 						win.show();
-									
-
-							
-							
+						if (Ext.util.Cookies.get("rem_user")!=null){
+							Ext.get('img-avatar').set({src: "resources/images/avatars/"+Ext.util.Cookies.get('rem_user')+".png"});
+						}
+					
 					}
 				    
 				

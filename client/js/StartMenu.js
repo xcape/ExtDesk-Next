@@ -27,6 +27,8 @@ Ext.define('Ext.ux.desktop.StartMenu', {
         'Ext.toolbar.Toolbar'
     ],
 
+    id:'start-menu-id',
+    
     ariaRole: 'menu',
 
     cls: 'x-menu ux-start-menu',
@@ -111,6 +113,11 @@ Ext.define('Ext.ux.desktop.StartMenu', {
             me.showAt(xy);
             me.doConstrain();
         }
+        ico=Ext.getCmp('start-menu-id').title;
+        
+        Ext.getCmp('start-menu-id').setIconCls(ico);
+        
+        
         return me;
     }
 }); // StartMenu

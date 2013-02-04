@@ -121,8 +121,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
             },
             requestcomplete : function(){
                 if(Ext.Object.getSize(Ext.Ajax.requests)<=1){
-			Ext.getCmp('ajax_connect').removeCls('ajax_connect');
-		}
+					Ext.getCmp('ajax_connect').removeCls('ajax_connect');
+				}	
             }
         });
 		
