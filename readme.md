@@ -1,4 +1,8 @@
-ExtDesk
+ExtDesk-Next
+=============
+
+The Nightly version of Extdesk... in dev...
+
 =============
 
 A extended desktop to the web. (This is a work in progress....)
