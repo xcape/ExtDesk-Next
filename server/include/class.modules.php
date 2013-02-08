@@ -34,31 +34,31 @@ class modules {
         //$debug->log($user);
 
 
-        $sql = "	select u.id,u.username, m.js, m.name,m.module,m.iconCls,um.shorcut,um.qLaunch,m.iconLaunch
-					from users_modules um, users u, modules m
-					where um.User=username and um.idModule=m.id
-					and username='$user' and m.js<>'Settings' ";
+        $sql = "    select u.id,u.username, m.js, m.name,m.module,m.iconCls,um.shorcut,um.qLaunch,m.iconLaunch
+                    from users_modules um, users u, modules m
+                    where um.User=username and um.idModule=m.id
+                    and username='$user' and m.js<>'Settings' ";
 
         $sql = "
-			select u.p_id, m.id, u.username,m.js,m.module,m.name,m.iconCls,up.shorcut,up.qLaunch, m.iconLaunch
-			from 
-			user_groups ug, 
-			users u, 
-			groups g, 
-			groups_modules gm, 
-			modules m ,
-			user_preferences up
-			where
-			ug.idUser = u.P_Id and  
-			ug.idGroup = g.id and 
-			g.id = gm.idgroups and 
-			m.id = gm.idModules and 
-			up.iduser = u.P_Id and
-			up.idmodule = m.id and
-			u.username='$user' and m.js<>'Settings'
-						group by js
-			order by m.id 
-			";
+            select u.p_id, m.id, u.username,m.js,m.module,m.name,m.iconCls,up.shorcut,up.qLaunch, m.iconLaunch
+            from 
+            user_groups ug, 
+            users u, 
+            groups g, 
+            groups_modules gm, 
+            modules m ,
+            user_preferences up
+            where
+            ug.idUser = u.P_Id and  
+            ug.idGroup = g.id and 
+            g.id = gm.idgroups and 
+            m.id = gm.idModules and 
+            up.iduser = u.P_Id and
+            up.idmodule = m.id and
+            u.username='$user' and m.js<>'Settings'
+                        group by js
+            order by m.id 
+            ";
 
 
 
@@ -74,36 +74,30 @@ class modules {
         $user = $_SESSION["ExtDeskSession"]["username"];
         $id = $_SESSION["ExtDeskSession"]["id"];
 
-
-        //$module = $_GET["Module"];
-        //$option = $_GET["option"];
-        //$action = $_GET["action"];
-    
-			
-		$module = null;
-		$option = null;
-		$action = null;
-		
-		if (isset($_GET["Module"])) { 
-			$module = $_GET["Module"]; 
-		}
-		if (isset($_GET["option"])) { 
-			$option = $_GET["option"]; 
-		}
-		if (isset($_GET["action"])) { 
-			$action = $_GET["action"]; 
-		}
-		
-		if (isset($_POST["Module"])) { 
-			$module = $_POST["Module"]; 
-		}
-		if (isset($_POST["option"])) { 
-			$option = $_POST["option"]; 
-		}
-		if (isset($_POST["action"])) { 
-			$action = $_POST["action"]; 
-		}
-			
+        $module = null;
+        $option = null;
+        $action = null;
+        
+        if (isset($_GET["Module"])) { 
+            $module = $_GET["Module"]; 
+        }
+        if (isset($_GET["option"])) { 
+            $option = $_GET["option"]; 
+        }
+        if (isset($_GET["action"])) { 
+            $action = $_GET["action"]; 
+        }
+        
+        if (isset($_POST["Module"])) { 
+            $module = $_POST["Module"]; 
+        }
+        if (isset($_POST["option"])) { 
+            $option = $_POST["option"]; 
+        }
+        if (isset($_POST["action"])) { 
+            $action = $_POST["action"]; 
+        }
+            
         $sql = "select a.module, 
                        a.option, 
                        a.action,
@@ -131,11 +125,13 @@ class modules {
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $log=new log();
         if (count($result) == 0) {
-            //$d->log("false");
+           $log->save($user,"Access denied to module",$module,$option,$action);
             return FALSE;
         } else {
-            //$d->log("true");
+            $log->save($user,"Granted access to the module",$module,$option,$action);
             return TRUE;
         }
     }
@@ -149,10 +145,10 @@ class modules {
 
         // create de sql
         $sql = "UPDATE users 
-				SET 
-				wallPaper=:wp, 
-				wpStretch=:stretch
-				WHERE username=:user";
+                SET 
+                wallPaper=:wp, 
+                wpStretch=:stretch
+                WHERE username=:user";
 
         $result = $this->dbh->prepare($sql);
         if ($result->execute(array(':wp' => $wp, ':stretch' => $stretch, ':user' => $user))) {
@@ -206,9 +202,9 @@ class modules {
         $theme = $_GET["theme"];
         // create de sql
         $sql = "UPDATE users 
-				SET 
-				theme='$theme' 
-				WHERE username='$user'";
+                SET 
+                theme='$theme' 
+                WHERE username='$user'";
         $result = $this->dbh->prepare($sql);
 
         if ($result->execute()) {

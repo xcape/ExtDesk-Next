@@ -238,3 +238,16 @@ INSERT INTO `user_preferences` (`id`, `idUser`, `idModule`, `shorcut`, `qLaunch`
 (9,1,9,0,0),
 (10,1,10,1,0),
 (11,1,11,1,0);
+
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE IF NOT EXISTS `log` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user` VARCHAR(45) NULL ,
+  `datetimes` DATETIME NULL ,
+  `eventt` VARCHAR(45) NULL ,
+  `modules` VARCHAR(45) NULL ,
+  `opt` VARCHAR(45) NULL ,
+  `actions` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `user` (`user` ASC) 
+) ENGINE=InnoDB COLLATE='utf8_general_ci';
