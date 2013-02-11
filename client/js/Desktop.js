@@ -131,13 +131,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
             me.resizeDesktop();
         },this);    
 		
-        //Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
-		
         Ext.EventManager.onWindowResize(function () {
 		
-        //console.log("se resizo");
-        //me.resizeDesktop();
-        //Ext.getCmp("id_shortcut_dataview").on('resize',me.resizeDesktop,me);    
         });
 
 		
@@ -401,8 +396,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
 	
         /*** Languaje options ***/
         me.loading = userStore.strings().findRecord("alias","loading").data.string;  
-
-        me.notification(me.loading, config.title);
+             
+        me.notification(me.loading, config.title,config.iconCls);
                         
         cls = cls || Ext.window.Window;
         win = me.add(new cls(cfg));
@@ -446,7 +441,6 @@ Ext.define('Ext.ux.desktop.Desktop', {
                 }
             });
         };
-        //console.log(config);
 
         return win;
     },
@@ -548,8 +542,7 @@ Ext.define('Ext.ux.desktop.Desktop', {
         return '<div class="msg"><h3>' + t + '</h3><p>' + s + '</p></div>';
     },
 	
-    notification:function(title,msg){
- 
+    notification:function(title,msg,ico){
     	//Notification
     	Ext.create('widget.uxNotification', {
 			title: title,
@@ -558,7 +551,8 @@ Ext.define('Ext.ux.desktop.Desktop', {
 			cls: 'ux-notification-light',
 			autoCloseDelay: 2500,
 			spacing: 50,
-			html: msg
+			html: msg,
+			iconH: ico,
 		}).show();
     	
 }

@@ -101,6 +101,7 @@ Ext.define('Ext.ux.window.Notification', {
 		me.setManager(me.manager);
 
 		me.callParent(arguments);
+
 	},
 
 	onRender: function() {
@@ -319,7 +320,7 @@ Ext.define('Ext.ux.window.Notification', {
 	
 	beforeShow: function () {
 		var me = this;
-
+			
 		if (me.stickOnClick) {
 			if (me.body && me.body.dom) {
 				Ext.fly(me.body.dom).on('click', function () {
@@ -367,8 +368,12 @@ Ext.define('Ext.ux.window.Notification', {
 			duration: me.slideInDuration,
 			dynamic: true
 		});
-
+	
 		this.callParent(arguments);
+		// Add icons to notification
+		tmpId = me.header.id;
+		Ext.getCmp(tmpId).addCls(me.iconH);
+		
 	},
 	
 	slideBack: function () {
