@@ -60,7 +60,6 @@ class os {
             //check the action we need
             //$this->debug->log($_GET);
 
-
             $Module = null;
             $option = null;
             $action = null;
@@ -105,6 +104,7 @@ class os {
                     }//<--end case action
                     break;
                 default:
+                   
                     //first check the user permisión
                     //this is a generic function
                     $modules = new modules;

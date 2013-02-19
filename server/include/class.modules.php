@@ -122,6 +122,8 @@ class modules {
                    and a.action='$action'
                  order by m.id";
 
+/*        $d = new debug();
+		$d->log($sql);*/
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
