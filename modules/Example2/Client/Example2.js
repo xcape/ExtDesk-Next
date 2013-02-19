@@ -51,17 +51,6 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 			]
 			});
 		}
-		/*
-		Ext.define('ImageEx', {
-		extend: 'Ext.data.Model',
-		Fields: [
-				{ name : 'id', 	type : 'string'},
-				{ name : 'src', 	type : 'string'},
-				{ name : 'title', 	type : 'string'},
-				{ name : 'caption',	type : 'string'}
-			]
-		});															
-		*/
 		// 15.-We create a store to load the images
 
     	me.store=Ext.create('Ext.data.Store', {
@@ -85,17 +74,7 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
             '</div>',
             '</tpl><br/>'
             );															//16.-We create a template to use
-		/*
-		me.imageTpl = new Ext.XTemplate(
-			'<tpl for=".">',
-				'<div id="{id}" class="thumb-wrap">',
-				  '<img src="{src}" />',
-				  '<span class="title">{title}</span><br/>',
-				  '<span class="caption">{caption}</span>',
-				'</div>',
-			'</tpl><br/>'
-		);
-        */
+
         
     },
 
@@ -176,8 +155,8 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 			}); 
 			var tab0 = Ext.getCmp('example2TabPanel');
 			var tab1 = Ext.getCmp('example2Tab1');		
+			tab0.add(tab1);
 		}
-		tab0.add(tab1);
 		tab1.show();
     },
 
@@ -192,9 +171,9 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 					html:'This is Tab 2'
 			}); 
 			var tab0 = Ext.getCmp('example2TabPanel');
-			var tab2 = Ext.getCmp('example2Tab2');		
+			var tab2 = Ext.getCmp('example2Tab2');
+			tab0.add(tab2);					
 		}
-		tab0.add(tab2);
 		tab2.show();
     },
 	openOption3 : function(opt){
@@ -209,8 +188,8 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 			}); 
 			var tab0 = Ext.getCmp('example2TabPanel');
 			var tab3 = Ext.getCmp('example2Tab3');		
+			tab0.add(tab3);
 		}
-		tab0.add(tab3);
 		tab3.show();
     },
 	
@@ -226,10 +205,8 @@ Ext.define('MyDesktop.Modules.Example2.Client.Example2', {			// 1.- Steep One de
 			}); 
 			var tab0 = Ext.getCmp('example2TabPanel');
 			var tab4 = Ext.getCmp('example2Tab4');		
+			tab0.add(tab4);
 		}
-		tab0.add(tab4);
 		tab4.show();
     },
 });
-
-
